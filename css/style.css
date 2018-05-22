@@ -1,19 +1,17 @@
-#carousel {
-	margin: 0 auto;
-	height: 300px;
-	width: 400px;
-	border: 2px solid black;
-	overflow: hidden;
-}
-ul {
-	width: 0;
-	width: 2000px;
-	padding: 0;
-	margin: 0;
+#carousel { margin: 0 auto; height: 300px; width: 400px; border: 2px solid black; overflow: hidden; }
 
-}
-ul li {
-	width: 400px;
-	list-style: none;
-	float: left;
-}
+#carousel ul { width: 0; width: 2000px; padding: 0; margin: 0; }
+
+#carousel ul li { width: 400px; list-style: none; float: left; }
+
+.text-center { text-align: center; }
+
+.dot { width: 30px; height: 30px; border: solid 1px black; border-radius: 50%; cursor: pointer; list-style-type: none; }
+
+.dots li { display: inline-block; }
+
+.dots { padding: 0px; }
+
+.dot:hover { background-color: rgba(0, 0, 0, 0.5); }
+
+.active { background-color: #000; }

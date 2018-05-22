@@ -25,10 +25,10 @@ $(function(){
 	var interavlId = setInterval(changeSlide, animationInterval);
 	$("#btn next").click(function() {
 		changeSlide();
-	})
+	});
 	$("#btn prev").click(function() {
 		changeSlideBack();
-	})
+	});
 	$(".dot").click(function(event) {
 		var currentButton = $(event.currentTarget);
 		var clickedSlide = currentButton.data("slide");
