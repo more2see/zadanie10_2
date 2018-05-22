@@ -1,45 +1,53 @@
-/$(function(){ 
+$(function(){
 	var carouselList = $('#carousel ul');
-/*	var changeSlide = setInterval(function(){ 
-		carouselList.animate({'marginLeft':-400}, 500,(function(){
-			var firstItem = carouselList.find('li:first');
-			var lastItem = carouselList.find('li:last');
-			lastItem.after(firstItem);
-			carouselList.css({marginLeft:0});
-		}));
-	}, 6000); */
-	$('#prev').on('click', function(event) {
-	  $	carouselList.animate({'marginLeft':-400}, 500,(function(){
-			var firstItem = carouselList.find('li:first');
-			var lastItem = carouselList.find('li:last');
-			lastItem.after(firstItem);
-			carouselList.css({marginLeft:0});
-		}));
-	 	/*event.preventDefault();*/
-	 /*	$('li').animate({marginLeft: '400px'}, 500); */
-	 	
-	/*alert('You clicked the button prev!');
+	var animationInterval = 3000;
+	var changeSlide = setInterval(animateSlide, animationInterval);
+	var animationDuration = 500;
+	function animateSlide() {
+		carouselList.animate({'marginLeft':-400}, animationDuration,moveFirstSlide());
+	}	
+	function moveFirstSlide() {
+		var firstItem = carouselList.find('li:first');
+		var lastItem = carouselList.find('li:last');
+		lastItem.after(firstItem);
+		carouselList.css({marginLeft:0});
+	}
+	function changeSlide() {
+		clearInterval(intervalId);
+		carouselList.animate({'marginLeft':-400}, animationDuration,moveLastSlide());
+		intevalId = setInterval(animateSlide,animationInterval);
+	}
+	function changeSlideBack() {
+		clearInterval(intervalId);
+		carouselList.animate({'marginLeft':400}, animationDuration,moveFirstSlide());
+		intevalId = setInterval(animateSlide,animationInterval);
+	}
+	var interavlId = setInterval(changeSlide, animationInterval);
+	$("#btn next").click(function() {
+		changeSlide();
+	})
+	$("#btn prev").click(function() {
+		changeSlideBack();
+	})
+	$(".dot").click(function(event) {
+		var currentButton = $(event.currentTarget);
+		var clickedSlide = currentButton.data("slide");
+		$(".dot").removeClass("active");
+		currentButton.addClass("active");
+		
+		var firstItem = carouselList.find("li:first");
+		var currentSlide = firstItem.data()
+		if (clickedSlide < currentSlide)
+		var slideCount = clickedSlide - currentSlide;
+		for (var i = 0; i<slideCount; i++) { 
+			changeSlideBack();
+			changeSlide();
+		}
+		else if (clickedSlide > currentSlide) {
+		var slideCount = clickedSlide - currentSlide;
+		}
+		for (var i = 0; i < slideCount) {
+		changeSlide();
+		}
+	});	
 });
-  	$('#next').on('click', function(event) {
-	alert('You clicked the button next!');
-});
-});
-*/
-/*
-var paragraphs = $('p');
-paragraphs.each(function(index, element) {
-	var button = '<button class="btn" data-tmp="' + index + '">Click me</button>';
-	$(element).append(button);
-});
-$('button').click(function() {
-	alert($(this).attr('data-tmp'));
-});
-*/
-
-/*var list = $('li');
-list.each(function(index, element) {
-    var listClass = '<li class="test" data-tmp="' + index + '">';
-    $(element).append(listClass);
-    console.log(listClass);
-});
-*/
